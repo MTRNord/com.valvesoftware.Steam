@@ -158,6 +158,10 @@ cleanup-commands:
 
 modules:
 
+  - shared-modules/gtk2/gtk2.json
+
+  - shared-modules/glu/glu-9.json
+
   - modules.yml
 
   - modules-32bit.yml
