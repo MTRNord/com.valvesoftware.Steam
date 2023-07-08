@@ -15,7 +15,7 @@ tags:
 sdk-extensions:
   - org.freedesktop.Sdk.Compat.i386
   - org.freedesktop.Sdk.Extension.toolchain-i386
-
+  - org.freedesktop.Sdk.Extension.openjdk17
 finish-args:
   - --share=ipc
   - --socket=wayland
@@ -63,13 +63,14 @@ finish-args:
   - --env=DBUS_FATAL_WARNINGS=0
   - --env=SSL_CERT_DIR=/etc/ssl/certs
   - --env=STEAM_EXTRA_COMPAT_TOOLS_PATHS=/app/share/steam/compatibilitytools.d:/app/utils/share/steam/compatibilitytools.d
-  - --env=PATH=/app/bin:/app/utils/bin:/usr/bin
+  - --env=PATH=/app/jre/bin:/app/bin:/app/utils/bin:/usr/bin
   - --env=PYTHONPATH=/app/utils/lib/python3.10/site-packages
   - --env=PROTON_DEBUG_DIR=/var/tmp
   - --env=XDG_CONFIG_DIRS=/etc/xdg:/usr/lib/x86_64-linux-gnu/GL:/usr/lib/i386-linux-gnu/GL
   - --env=XDG_DATA_DIRS=/app/share:/usr/lib/extensions/vulkan/share:/usr/share:/usr/share/runtime/share:/run/host/user-share:/run/host/share
   - --env=GST_PLUGIN_SYSTEM_PATH=/app/lib/gstreamer-1.0:/app/lib32/gstreamer-1.0:/usr/lib/extensions/gstreamer-1.0:/usr/lib/x86_64-linux-gnu/gstreamer-1.0:/usr/lib/i386-linux-gnu/gstreamer-1.0
   - --require-version=1.0.0
+#  - --env=JAVA_HOME=/app/jre
 
 add-extensions:
   org.freedesktop.Platform.Compat.i386:
@@ -157,6 +158,11 @@ cleanup-commands:
   - python3 -m compileall --invalidation-mode=unchecked-hash /app
 
 modules:
+
+  - name: openjdk
+    buildsystem: simple
+    build-commands:
+      - /usr/lib/sdk/openjdk17/install.sh
 
   - shared-modules/gtk2/gtk2.json
 

@@ -1,2 +1,5 @@
 *.pyc
 *~
+steam
+.flatpak-builder
+output.log
