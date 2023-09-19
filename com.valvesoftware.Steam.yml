@@ -5,7 +5,7 @@ x-gl-version: &gl-version '1.4'
 x-gl-versions: &gl-versions 23.08;23.08-extra;1.4
 x-gl-merge-dirs: &gl-merge-dirs vulkan/icd.d;glvnd/egl_vendor.d;OpenCL/vendors;lib/dri;lib/d3d;vulkan/explicit_layer.d;vulkan/implicit_layer.d
 sdk: org.gnome.Sdk
-command: steam-wrapper
+command: steam
 separate-locales: false
 rename-icon: steam
 rename-desktop-file: steam.desktop
@@ -76,11 +76,11 @@ finish-args:
 add-extensions:
   org.gnome.Platform.Compat.i386:
     directory: lib/i386-linux-gnu
-    version: '43'
+    version: '44'
 
   org.gnome.Platform.Compat.i386.Debug:
     directory: lib/debug/lib/i386-linux-gnu
-    version: '43'
+    version: '44'
     no-autodownload: true
 
   org.freedesktop.Platform.GL32:
@@ -201,7 +201,8 @@ modules:
       - |
         set -e
         sed -i s:/usr/bin/steam:/app/bin/steam: steam.desktop
-        desktop-file-edit --remove-key=X-KDE-RunOnDiscreteGpu steam.desktop
+        #desktop-file-edit --remove-key=PrefersNonDefaultGPU steam.desktop
+        #desktop-file-edit --remove-key=X-KDE-RunOnDiscreteGpu steam.desktop
         desktop-file-edit --set-key=StartupWMClass --set-value=Steam steam.desktop
         sed -i s:/usr/lib/:/app/lib/: steam
         PREFIX=/app make install
