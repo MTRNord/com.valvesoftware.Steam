@@ -9,13 +9,15 @@ command: steam-wrapper
 separate-locales: false
 rename-icon: steam
 rename-desktop-file: steam.desktop
+base-version: stable-22.08
 tags:
   - proprietary
 
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.toolchain-i386
   - org.gnome.Sdk.Compat.i386
+  - org.freedesktop.Sdk.Extension.toolchain-i386
   - org.freedesktop.Sdk.Extension.openjdk17
+  - org.freedesktop.Sdk.Extension.mono6
 finish-args:
   - --share=ipc
   - --socket=wayland
@@ -177,6 +179,11 @@ modules:
   - modules-32bit.yml
 
   - python3-requirements.json
+
+  - name: mono
+    buildsystem: simple
+    build-commands:
+      - /usr/lib/sdk/mono6/install.sh
 
   - name: steam_wrapper
     buildsystem: simple

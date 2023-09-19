@@ -1,0 +1,13 @@
+diff --git a/steam_wrapper/steam_wrapper.py b/steam_wrapper/steam_wrapper.py
+index c9b52fc..aefa735 100644
+--- a/steam_wrapper/steam_wrapper.py
++++ b/steam_wrapper/steam_wrapper.py
+@@ -405,7 +405,7 @@ def check_extensions(flatpak_info):
+     installed_ext_ids = set(flatpak_info["runtime-extensions"]) | \
+                         set(flatpak_info["app-extensions"])
+ 
+-    compat_ids = ["org.freedesktop.Platform.Compat.i386"]
++    compat_ids = ["org.gnome.Platform.Compat.i386"]
+     # For each installed .GL. extension, check for its .GL32. counterpart
+     GL_EXT_PREFIX = "org.freedesktop.Platform.GL"
+     for ext_id in installed_ext_ids:
